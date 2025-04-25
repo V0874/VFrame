@@ -1,3 +1,0 @@
-/mnt/hdd/projects/pwm_driver/build/CMakeFiles/pwm_driver.dir
-/mnt/hdd/projects/pwm_driver/build/CMakeFiles/edit_cache.dir
-/mnt/hdd/projects/pwm_driver/build/CMakeFiles/rebuild_cache.dir

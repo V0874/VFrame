@@ -1,1 +1,0 @@
-/mnt/hdd/toolchains/avr/bin/avr-gcc -mmcu=atmega2560 -Os -fno-diagnostics-show-caret -g -g -mmcu=atmega2560 CMakeFiles/pwm_driver.dir/main.c.o CMakeFiles/pwm_driver.dir/gpio/gpio.c.o -o pwm_driver   -L/mnt/hdd/toolchains/avr/avr/lib

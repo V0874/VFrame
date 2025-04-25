@@ -1,0 +1,19 @@
+# Build artifacts
+build/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Object files, libraries, and executables
+*.o
+*.a
+*.so
+*.exe
+*.out
+*.elf
+*.hex
+
+# IDE specific files (if applicable)
+.vscode/
+.idea/
