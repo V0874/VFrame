@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/mnt/hdd/projects/pwm_driver/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

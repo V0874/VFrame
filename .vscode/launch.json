@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch simavr",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/hdd/projects/pwm_driver/build/pwm_driver",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "-g",                         // Enable GDB server mode
+                "-m", "atmega2560",            // Specify MCU model
+                "-f", "16000000",              // Specify the clock frequency
+                "${workspaceFolder}/build/pwm_driver.hex"  // Path to your .hex file
+            ],
+            "stopAtEntry": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/mnt/hdd/toolchains/avr/bin/avr-gdb",  // Path to avr-gdb
+            "miDebuggerServerAddress": "localhost:1234",
+            "externalConsole": false,  // No external console
+            "setupCommands": [
+                {
+                    "description": "Enable pretty printing for GDB",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

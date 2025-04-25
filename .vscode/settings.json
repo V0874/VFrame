@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "io.h": "c",
+        "iom256rfr2.h": "c",
+        "iom2564rfr2.h": "c",
+        "delay.h": "c",
+        "iom2560.h": "c",
+        "gpio.h": "c"
+    }
+}
