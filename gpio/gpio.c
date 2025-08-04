@@ -1,4 +1,4 @@
-#include <gpio.h>
+#include "gpio.h"
 
 void setInput(volatile uint8_t *ddr, int pin){
     *ddr &= ~(1 << pin);
@@ -24,4 +24,8 @@ void enablePullUp(volatile uint8_t *port, int pin){
 }
 void disablePullUp(volatile uint8_t *port, int pin){
     *port & ~(1 << pin);
+}
+
+ISR(TIMER0_COMPA_vect){
+    setLow(&PORTH, PH6);
 }
