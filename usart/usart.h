@@ -30,3 +30,18 @@ void usart_enable_tx_complete_isr(usart_t* usart);              // enables trans
 
 void usart_disable_rx_complete_isr(usart_t* usart);             // disables receive complete interrupt routine
 void usart_disable_tx_complete_isr(usart_t* usart);             // disables transmit complete interrupt routine
+
+void usart_enable_buffempty_isr(usart_t* usart);                // enables buffer empty interrupt routine; global interrupts must be enabled
+                                                                // interrupt will only fire if the USART_BUFF_EMPTY bit is set
+
+void usart_disable_buffempty_isr(usart_t* usart);               // disables buffer empty interrupt routine;
+
+void usart_tx_enable(usart_t* usart);                           // enables tx communication 
+
+void usart_rx_enable(usart_t* usart);                           // enables rx communication
+
+void usart_tx_disable(usart_t* usart);                          // disables tx communication 
+                                                                // disabling will not become effective until all transmissions have complete
+
+void usart_rx_disable(usart_t* usart);                          // disables rx communication
+                                                                // disabling will flush the receive buffer

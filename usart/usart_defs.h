@@ -26,11 +26,11 @@
 
 // USART Control Register B
 
-#define USART_RX_ISR_BIT        (1 << 7)                // RX complete interrupt bit
-#define USART_TX_ISR_BIT        (1 << 6)                // TX complete interrupt bit
-#define USART_BUFF_INT_ENABLE   (1 << 5)                // enable data register empty interrupt
-#define USART_RECEIVE_ENABLE    (1 << 4)                // enable receiver
-#define USART_TRANSMIT_ENABLE   (1 << 3)                // enable transmitter
+#define USART_RX_ISR_SET        (1 << 7)                // RX complete interrupt bit
+#define USART_TX_ISR_SET        (1 << 6)                // TX complete interrupt bit
+#define USART_BUFF_ISR_SET      (1 << 5)                // enable data register empty interrupt
+#define USART_RX_SET            (1 << 4)                // enable receiver
+#define USART_TX_SET            (1 << 3)                // enable transmitter
 #define USART_CHAR_SIZE         (1 << 2)                // character size setting
 #define USART_RECEIVE_8BITN     (1 << 1)                // receive data bit 8n; 9th bit to be received with serial frames
 #define USART_TRANSMIT_8BITN    (1 << 0)                // transmit data bit 8n; 9th bit to be transmitted with serial frames
