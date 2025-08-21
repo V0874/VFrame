@@ -1,18 +1,25 @@
 #include "usart.h"
-#include "gpio.h"
 
-volatile char* tx_buffer;
-
-void usart_send(char* data){
-    tx_buffer = data;
-    UCSR0B |= (1 << UDRIE0);
+void usart_enable_doublespeed(usart_t* usart){
+    usart->UCSRnA |= USART_DBL_SPEED_MODE;
 }
 
-ISR(USART0_UDRE_vect){
-    if (*tx_buffer != '\0'){
-    UDR0 = *tx_buffer;
-    tx_buffer++; 
-    } else {
-    UCSR0B &= ~(1 << UDRIE0);
-    }
+void usart_enable_multiproc_mode(usart_t* usart){
+    usart->UCSRnA |= USART_MULTI_PROC_MODE;
+}
+
+void usart_enable_rx_complete_isr(usart_t* usart){
+    usart->UCSRnB |= USART_RX_ISR_BIT;
+}
+
+void usart_enable_tx_complete_isr(usart_t* usart){
+    usart->UCSRnB |= USART_TX_ISR_BIT;
+}
+
+void usart_disable_rx_complete_isr(usart_t* usart){
+    usart->UCSRnB &= ~USART_RX_ISR_BIT;
+}
+
+void usart_disable_tx_complete_isr(usart_t* usart){
+    usart->UCSRnB &= ~USART_TX_ISR_BIT;
 }

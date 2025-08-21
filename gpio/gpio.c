@@ -23,9 +23,5 @@ void enablePullUp(volatile uint8_t *port, int pin){
     *port |= (1 << pin);
 }
 void disablePullUp(volatile uint8_t *port, int pin){
-    *port & ~(1 << pin);
-}
-
-ISR(TIMER0_COMPA_vect){
-    setLow(&PORTH, PH6);
+    *port &= ~(1 << pin);
 }
