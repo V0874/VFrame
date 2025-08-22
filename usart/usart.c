@@ -4,6 +4,10 @@ void usart_enable_doublespeed(usart_t* usart){
     usart->UCSRnA |= USART_DBL_SPEED_MODE;
 }
 
+void usart_disable_doublespeed(usart_t* usart){
+    usart->UCSRnA &= ~USART_DBL_SPEED_MODE;
+}
+
 void usart_enable_multiproc_mode(usart_t* usart){
     usart->UCSRnA |= USART_MULTI_PROC_MODE;
 }
@@ -47,3 +51,35 @@ void usart_tx_disable(usart_t* usart){
 void usart_rx_disable(usart_t* usart){
     usart->UCSRnB &= ~USART_RX_SET;
 }
+
+void usart_clear_mode(usart_t* usart){
+    usart->UCSRnC &= ~USART_MODE_RESET;
+}
+
+void usart_set_mode(usart_t* usart, uint8_t mode){
+    usart->UCSRnC |= mode;
+}
+
+void clear_parity_mode(usart_t* usart){
+    usart->UCSRnC &= ~USART_PARITY_RESET;
+}
+
+void set_parity_mode(usart_t* usart, uint8_t mode){
+    usart->UCSRnC |= mode;
+}
+
+void usart_set_1stopbit(usart_t* usart){
+    usart->UCSRnC &= ~USART_STOP_BIT_MODE;
+}
+
+void usart_set_2stopbits(usart_t* usart){
+    usart->UCSRnC |= USART_STOP_BIT_MODE;
+}
+
+void usart_clear_clock_polarity(usart_t* usart){
+    usart->UCSRnC &= USART_CLOCK_POLARITY;
+}
+
+void usart_set_clock_polarity(usart_t* usart){
+    usart->UCSRnC |= USART_CLOCK_POLARITY;
+}  

@@ -31,28 +31,30 @@
 #define USART_BUFF_ISR_SET      (1 << 5)                // enable data register empty interrupt
 #define USART_RX_SET            (1 << 4)                // enable receiver
 #define USART_TX_SET            (1 << 3)                // enable transmitter
-#define USART_CHAR_SIZE         (1 << 2)                // character size setting
+#define USART_DATA_BITS         (1 << 2)                // used in conjunction to set the data bits mode
 #define USART_RECEIVE_8BITN     (1 << 1)                // receive data bit 8n; 9th bit to be received with serial frames
 #define USART_TRANSMIT_8BITN    (1 << 0)                // transmit data bit 8n; 9th bit to be transmitted with serial frames
 
 
 // USART Control Register C
 
-#define USART_MODE_MASK         ((1 << 6) | (1 << 7))   // needed for clearing bits prior to configuring the mode; sets async mode by default
+#define USART_MODE_RESET        ((1 << 6) | (1 << 7))   // reset usart mode prior to configuring mode selection;
+                                                        // if reset and a mode is not set subsequently, expect asynchronous mode by default
+
 #define USART_SYNC_MODE         (1 << 6)                // set synchronous mode
 #define USART_MASTER_SPI_MODE   ((1 << 6) | (1 << 7))   // set master spi mode
-#define USART_PARITY_MODE_MASK  ((1 << 4) | (1 << 5))   // must clear the mode prior to parity configuration; disables parity mode by default
+#define USART_PARITY_RESET      ((1 << 4) | (1 << 5))   // must reset the mode prior to parity configuration; disables parity mode by default
 #define USART_EVEN_PARITY       (1 << 5)                // even parity mode enabled
 #define USART_ODD_PARITY        ((1 << 4) | (1 << 5))   // odd parity mode enabled
-#define USART_STOP_BIT_MODE     (1 << 3)                // clearing stop bit mode sets 1 stop bit; setting the mode sets 2 stop bits
+#define USART_STOP_BIT_MODE     (1 << 3)                // clearing stop bit mode to 0 sets 1 stop bit; setting the mode to 1 sets 2 stop bits
 
-#define USART_CHAR_SIZE_MODE    ((1 << 1) | (1 << 2))   // must clear the mode prior to char size config other than default;
+#define USART_DATA_BITS_MODE    ((1 << 1) | (1 << 2))   // must clear the mode prior to char size config other than default;
                                                             // 8 bits is set by default without any config;
                                                             // if mode is cleared, and char_size bit is cleared, expect 5-bits char size
 
-#define USART_CHAR_SIZE_6BITS   (1 << 1)                // sets char size to 6 bits assuming the mode has been cleared
-#define USART_CHAR_SIZE_7BITS   (1 << 2)                // sets char size to 7 bits assuming the mode has been cleared
-#define USART_CHAR_SIZE_9BITS   ((1 << 1) | (1 << 2))   // sets char size to 9 bits and char_size in control register B must be set to 1
+#define USART_DATA_BITS_6BITS   (1 << 1)                // sets char size to 6 bits assuming the mode has been cleared
+#define USART_DATA_BITS_7BITS   (1 << 2)                // sets char size to 7 bits assuming the mode has been cleared
+#define USART_DATA_BITS_9BITS   ((1 << 1) | (1 << 2))   // sets char size to 9 bits and char_size in control register B must be set to 1
 
 #define USART_CLOCK_POLARITY    (1 << 0)                // transmitted data rising edge; received data falling edge by default;
                                                             // if this  bit is set the configuration is reversed
