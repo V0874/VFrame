@@ -1,7 +1,9 @@
 # VFrame
 
-A framework that will be targeting the **ATmega2560**.
+A thin abstraction layer targeting the **ATmega2560**.
 
-This project is primarily to gain a deeper understanding and experiment with designing low level embedded systems.
+This project is primarily to experiment designing embedded systems with minimal dependencies.
 
-Furthermore, this project will be used to quickly prototype designs for the **ATmega2560**.
+The plan for the future is to build a layer on top once complete.
+
+Furthermore, this project will be used to quickly prototype designs with the **ATmega2560**.
