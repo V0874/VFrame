@@ -83,3 +83,21 @@ void usart_clear_clock_polarity(usart_t* usart){
 void usart_set_clock_polarity(usart_t* usart){
     usart->UCSRnC |= USART_CLOCK_POLARITY;
 }  
+
+void usart_clear_databits_mode(usart_t* usart){
+    usart->UCSRnB &= ~USART_DATA_BITS;
+    usart->UCSRnC &= ~USART_DATA_BITS_MODE;
+}
+
+void usart_set_databits(usart_t* usart, uint8_t mode){
+    usart->UCSRnC |= mode;
+}
+
+void usart_set_9databits(usart_t* usart, uint8_t mode){
+    usart->UCSRnB |= USART_DATA_BITS;
+    usart->UCSRnC |= USART_DATA_BITS_9BITS;
+}
+
+void usart_set_baudrate(usart_t* usart, uint32_t baud){
+
+}
