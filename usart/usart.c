@@ -1,5 +1,10 @@
 #include "usart.h"
 
+static usart_mode_t USART0_MODE;
+static usart_mode_t USART1_MODE;
+static usart_mode_t USART2_MODE;
+static usart_mode_t USART3_MODE;
+
 void usart_enable_doublespeed(usart_t* usart){
     usart->UCSRnA |= USART_DBL_SPEED_MODE;
 }
@@ -52,32 +57,20 @@ void usart_rx_disable(usart_t* usart){
     usart->UCSRnB &= ~USART_RX_SET;
 }
 
-void usart_clear_mode(usart_t* usart){
-    usart->UCSRnC &= ~USART_MODE_RESET;
-}
-
 void usart_set_mode(usart_t* usart, uint8_t mode){
     usart->UCSRnC |= mode;
-}
-
-void clear_parity_mode(usart_t* usart){
-    usart->UCSRnC &= ~USART_PARITY_RESET;
 }
 
 void set_parity_mode(usart_t* usart, uint8_t mode){
     usart->UCSRnC |= mode;
 }
 
-void usart_set_1stopbit(usart_t* usart){
-    usart->UCSRnC &= ~USART_STOP_BIT_MODE;
+void usart_set_stopbits(usart_t* usart){
+    usart->UCSRnC |= USART_2_STOP_BITS;
 }
 
-void usart_set_2stopbits(usart_t* usart){
-    usart->UCSRnC |= USART_STOP_BIT_MODE;
-}
-
-void usart_clear_clock_polarity(usart_t* usart){
-    usart->UCSRnC &= USART_CLOCK_POLARITY;
+void usart_disable_clock_polarity(usart_t* usart){
+    usart->UCSRnC &= ~USART_CLOCK_POLARITY;
 }
 
 void usart_set_clock_polarity(usart_t* usart){
@@ -93,11 +86,11 @@ void usart_set_databits(usart_t* usart, uint8_t mode){
     usart->UCSRnC |= mode;
 }
 
-void usart_set_9databits(usart_t* usart, uint8_t mode){
+void usart_set_9databits(usart_t* usart){
     usart->UCSRnB |= USART_DATA_BITS;
     usart->UCSRnC |= USART_DATA_BITS_9BITS;
 }
 
 void usart_set_baudrate(usart_t* usart, uint32_t baud){
-
+    
 }

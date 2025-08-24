@@ -1,5 +1,6 @@
 #include "gpio.h"
 
+
 void setInput(volatile uint8_t *ddr, int pin){
     *ddr &= ~(1 << pin);
 }

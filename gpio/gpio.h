@@ -1,5 +1,6 @@
 #pragma once
 #include "../common_defs.h"
+#include <avr/io.h>
 
 void setInput(volatile uint8_t *ddr, int pin);
 void setOutput(volatile uint8_t  *ddr, int pin);
