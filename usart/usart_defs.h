@@ -13,6 +13,8 @@
                                                         USART flag and configuration settings
 */
 
+#define FOSC 160000000UL                                // system clock speed
+
 // USART Control Register A
 
 #define USART_RX_SUCCESS        (1 << 7)                // receive complete flag 
@@ -21,7 +23,7 @@
 #define USART_FRAME_ERROR       (1 << 4)                // frame error flag
 #define USART_DATA_OVERRUN      (1 << 3)                // data overrun flag
 #define USART_PARITY_ERROR      (1 << 2)                // parity error flag
-#define USART_DBL_SPEED_MODE    (1 << 1)                // double transmission speed setting
+#define USART_DBL_SPEED_CONFIG  (1 << 1)                // double transmission speed setting
 #define USART_MULTI_PROC_MODE   (1 << 0)                // multi processor communication mode setting
 
 // USART Control Register B
@@ -38,12 +40,12 @@
 
 // USART Control Register C
 
-#define USART_SYNC_MODE         (1 << 6)                // set synchronous mode; asynchronous mode is set by default without config
-#define USART_MASTER_SPI_MODE   ((1 << 6) | (1 << 7))   // set master spi mode
+#define USART_SYNC_CONFIG         (1 << 6)                // set synchronous mode; asynchronous mode is set by default without config
+#define USART_MASTER_SPI_CONFIG   ((1 << 6) | (1 << 7))   // set master spi mode
 #define USART_EVEN_PARITY       (1 << 5)                // even parity mode enabled; parity is disabled by default without config
 #define USART_ODD_PARITY        ((1 << 4) | (1 << 5))   // odd parity mode enabled
 #define USART_2_STOP_BITS       (1 << 3)                // enabling sets 2 stop bits; 1 stop bit is configured by default without config
-#define USART_DATA_BITS_MODE    ((1 << 1) | (1 << 2))   /* must clear the mode prior to data bits config other than default;
+#define USART_DATA_BITS_CONFIG    ((1 << 1) | (1 << 2))   /* must clear the mode prior to data bits config other than default;
                                                         8 data bits mode is set by default without any config;
                                                         if mode is cleared, expect 5 data bits without any subsequent config*/
 #define USART_DATA_BITS_6BITS   (1 << 1)                // sets data bits to 6 bits assuming the mode has been cleared

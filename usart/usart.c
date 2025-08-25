@@ -1,16 +1,13 @@
 #include "usart.h"
 
-static usart_mode_t USART0_MODE;
-static usart_mode_t USART1_MODE;
-static usart_mode_t USART2_MODE;
-static usart_mode_t USART3_MODE;
-
-void usart_enable_doublespeed(usart_t* usart){
-    usart->UCSRnA |= USART_DBL_SPEED_MODE;
+void usart_enable_doublespeed(usart_t* usart, usart_mode_t mode){
+    usart->UCSRnA |= USART_DBL_SPEED_CONFIG;
+    mode = USART_DBL_SPEED_MODE;
 }
 
-void usart_disable_doublespeed(usart_t* usart){
-    usart->UCSRnA &= ~USART_DBL_SPEED_MODE;
+void usart_disable_doublespeed(usart_t* usart, usart_mode_t mode){
+    usart->UCSRnA &= ~USART_DBL_SPEED_CONFIG;
+    mode = USART_SYNC_MODE;
 }
 
 void usart_enable_multiproc_mode(usart_t* usart){
@@ -57,12 +54,16 @@ void usart_rx_disable(usart_t* usart){
     usart->UCSRnB &= ~USART_RX_SET;
 }
 
-void usart_set_mode(usart_t* usart, uint8_t mode){
-    usart->UCSRnC |= mode;
+void usart_set_mode(usart_t* usart, uint8_t config, usart_mode_t mode){
+    usart->UCSRnC |= config;
+    switch(config){
+        case USART_SYNC_CONFIG: mode = USART_SYNC_MODE;
+        case USART_MASTER_SPI_CONFIG: mode = USART_SPI_MASTER_MODE;
+    }
 }
 
-void set_parity_mode(usart_t* usart, uint8_t mode){
-    usart->UCSRnC |= mode;
+void set_parity_mode(usart_t* usart, uint8_t config){
+    usart->UCSRnC |= config;
 }
 
 void usart_set_stopbits(usart_t* usart){
@@ -79,11 +80,11 @@ void usart_set_clock_polarity(usart_t* usart){
 
 void usart_clear_databits_mode(usart_t* usart){
     usart->UCSRnB &= ~USART_DATA_BITS;
-    usart->UCSRnC &= ~USART_DATA_BITS_MODE;
+    usart->UCSRnC &= ~USART_DATA_BITS_CONFIG;
 }
 
-void usart_set_databits(usart_t* usart, uint8_t mode){
-    usart->UCSRnC |= mode;
+void usart_set_databits(usart_t* usart, uint8_t config){
+    usart->UCSRnC |= config;
 }
 
 void usart_set_9databits(usart_t* usart){
@@ -91,6 +92,29 @@ void usart_set_9databits(usart_t* usart){
     usart->UCSRnC |= USART_DATA_BITS_9BITS;
 }
 
-void usart_set_baudrate(usart_t* usart, uint32_t baud){
-    
+void usart_set_baudrate(usart_t* usart, usart_mode_t mode, uint32_t baud){
+    switch(mode){
+        case USART_DBL_SPEED_MODE:{
+            uint16_t UBRR = (FOSC / (8UL * baud)) - 1;
+            usart->UBRRnH = (uint8_t)(UBRR >> 8);
+            usart->UBRRnL = (uint8_t)(UBRR);
+        }
+        case USART_SPI_MASTER_MODE:{
+            uint16_t UBRR = (FOSC / (2UL * baud)) - 1;
+            usart->UBRRnH = (uint8_t)(UBRR >> 8);
+            usart->UBRRnL = (uint8_t)(UBRR);
+        }
+        default: {
+            uint16_t UBRR = (FOSC / (16UL * baud)) - 1;
+            usart->UBRRnH = (uint8_t)(UBRR >> 8);
+            usart->UBRRnL = (uint8_t)(UBRR);
+        }
+    }
 }
+
+void usart_send(usart_t* usart, unsigned char data){
+
+    while (!(usart->UCSRnA & USART_BUFF_EMPTY));
+    
+    usart->UDRn = data;
+    }
