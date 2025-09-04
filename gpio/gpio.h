@@ -1,8 +1,5 @@
 #pragma once
-#include <stdint.h>
-#include <stdbool.h>
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#include "../common_defs.h"
 
 void setInput(volatile uint8_t* ddr, int pin);
 void setOutput(volatile uint8_t* ddr, int pin);

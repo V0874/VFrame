@@ -1,18 +1,24 @@
-#include "common_defs.h"
+#include "../common_defs.h"
+#include <util/atomic.h>
 
 #define BUFFER_SIZE 255
 
+
 typedef struct {
-volatile uint8_t Buffer[BUFFER_SIZE];
-volatile uint8_t* Read;
-volatile uint8_t* Write;
-volatile uint8_t Count;
+uint8_t buffer[BUFFER_SIZE];
+uint8_t* read;
+uint8_t* write;
+uint8_t count;
 } ring_buffer_t;
 
-void ring_buffer_init(volatile ring_buffer_t* buffer);
+void ring_buffer_init(ring_buffer_t* const buffer);
 
-void ring_buffer_write(volatile ring_buffer_t* buffer, uint8_t data);
+uint8_t ring_buffer_count(ring_buffer_t* const buffer);
 
-void ring_buffer_read(volatile ring_buffer_t* buffer, uint8_t data);
+bool ring_buffer_full(ring_buffer_t* const buffer);
 
-uint8_t ring_buffer_count(volatile ring_buffer_t* buffer);
+bool ring_buffer_empty(ring_buffer_t* const buffer);
+
+uint8_t ring_buffer_read(ring_buffer_t* const buffer);
+
+void ring_buffer_write(ring_buffer_t* const buffer, const uint8_t data);
