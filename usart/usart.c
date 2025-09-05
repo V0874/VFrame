@@ -66,7 +66,7 @@ void set_parity_mode(volatile usart_t* usart, uint8_t config){
     usart->UCSRnC |= config;
 }
 
-void usart_set_stopbits(volatile usart_t* usart){
+void usart_set_2stopbits(volatile usart_t* usart){
     usart->UCSRnC |= USART_2_STOP_BITS;
 }
 
@@ -78,18 +78,54 @@ void usart_set_clock_polarity(volatile usart_t* usart){
     usart->UCSRnC |= USART_CLOCK_POLARITY;
 }  
 
-void usart_clear_databits_mode(volatile usart_t* usart){
-    usart->UCSRnB &= ~USART_DATA_BITS;
-    usart->UCSRnC &= ~USART_DATA_BITS_CONFIG;
-}
-
 void usart_set_databits(volatile usart_t* usart, uint8_t config){
-    usart->UCSRnC |= config;
+    switch(config){
+        case 5: {
+            usart->UCSRnC &= ~USART_DATA_BITS_MASK;
+            break;
+        }
+        case 6: {
+            usart->UCSRnC |= USART_DATA_BITS_6BITS;
+            break;
+        }
+        case 7: {
+            usart->UCSRnC |= USART_DATA_BITS_7BITS;
+            break;
+        }
+        case 9: {
+            usart->UCSRnB |= USART_DATA_BITS_9BITS;
+            break;
+        }
+    }
 }
 
-void usart_set_9databits(volatile usart_t* usart){
-    usart->UCSRnB |= USART_DATA_BITS;
-    usart->UCSRnC |= USART_DATA_BITS_9BITS;
+void usart_set_dataorder(volatile usart_t* usart, uint8_t config){
+    switch(config){
+        case 0: {
+            usart->UCSRnC &= ~USART_DATA_ORDER;
+        }
+        case 1: {
+            usart->UCSRnC |= USART_DATA_ORDER;
+        }
+    }
+}
+
+void usart_set_spi_mode(volatile usart_t* usart, uint8_t config){
+    switch(config){
+        case 0:{
+            usart->UCSRnC &= ~USART_CLOCK_PHASE;
+            break;
+        }
+        case 2:{
+            usart->UCSRnC &= ~USART_CLOCK_PHASE;
+            usart->UCSRnC |= USART_CLOCK_POLARITY;
+            break;
+        }
+        case 3:{
+            usart->UCSRnC |= USART_CLOCK_POLARITY;
+            break;
+        }
+    }
 }
 
 void usart_set_baudrate(volatile usart_t* usart, usart_mode_t* mode, uint32_t baud){

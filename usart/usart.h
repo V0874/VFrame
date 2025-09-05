@@ -77,9 +77,10 @@ void usart_set_mode(volatile usart_t* usart, uint8_t config, usart_mode_t* mode)
                                                                                     ex: if you are using USART0, you must pass in USART0_MODE */
 
 void set_parity_mode(volatile usart_t* usart, uint8_t config);          /* even and odd parity configuration are available; 
-                                                                        by default parity is disabled */
+                                                                        by default parity is disabled
+                                                                        must pass in USART_EVEN/ODD_PARITY selection */
 
-void usart_set_stopbits(volatile usart_t* usart);                       /* 1 stop bit is set by default
+void usart_set_2stopbits(volatile usart_t* usart);                       /* 1 stop bit is set by default for all usarts
                                                                         this should only be enabled to set 2 stop bits */
 
 void usart_disable_clock_polarity(volatile usart_t* usart);             // polarity must be disabled when asynchronous mode is used
@@ -87,16 +88,17 @@ void usart_disable_clock_polarity(volatile usart_t* usart);             // polar
 void usart_set_clock_polarity(volatile usart_t* usart);                 /* polarity sets the relationship between data output change and data input sample
                                                                         and the synchronous clock; for synchronous mode only */
 
-void usart_clear_databits_mode(volatile usart_t* usart);                /* clears the current data bits mode selected; 
-                                                                        must clear the configuration before setting the mode
-                                                                        to anything other than 8 data bits; 8 data bits is the default mode without config;
-                                                                        if the mode is cleared, 5 data bits mode is to be expected without config*/
-
 void usart_set_databits(volatile usart_t* usart, uint8_t config);       /* configures the data bits mode
-                                                                        data bit modes available: 5, 6, and 7;
-                                                                        for 9 data bits use the exclusive function */
+                                                                        data bit modes available: 5, 6, 7, and 9
+                                                                        must pass in the value that is desired as the config parameter */
 
-void usart_set_9databits(volatile usart_t* usart);                      // sets 9 data bits; the mode must be cleared before its set
+void usart_set_spi_mode(volatile usart_t* usart, uint8_t config);      /* sets the current spi mode, there is a table to reference in the defines
+                                                                        the mode is defaulted to spi mode one; otherwise you must pass in a value for
+                                                                        the specific mode that you want to set based on desired config ie: 0, 2, 3; */
+
+void usart_set_dataorder(volatile usart_t* usart, uint8_t config);     /* enables the least or most significant bit of the data to be transmitted first
+                                                                       for master SPI mode only; value 0 will be the most significant bit transmitted first;
+                                                                       value 1 will be the least significant bit transmitted first (for config parameter) */
 
 void usart_set_baudrate(volatile usart_t* usart, usart_mode_t* mode, uint32_t baud);    /* sets the baud rate
                                                                                         you must pass in the mode that corresponds to the USART used

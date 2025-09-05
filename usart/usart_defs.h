@@ -45,16 +45,62 @@
 #define USART_EVEN_PARITY         (1 << 5)                // even parity mode enabled; parity is disabled by default without config
 #define USART_ODD_PARITY          ((1 << 4) | (1 << 5))   // odd parity mode enabled
 #define USART_2_STOP_BITS         (1 << 3)                // enabling sets 2 stop bits; 1 stop bit is configured by default without config
-#define USART_DATA_BITS_CONFIG    ((1 << 1) | (1 << 2))   /* must clear the mode prior to data bits config other than default;
-                                                          8 data bits mode is set by default without any config;
-                                                          if mode is cleared, expect 5 data bits without any subsequent config*/
+#define USART_DATA_BITS_MASK      ((1 << 1) | (1 << 2))     /* clears the data bits and sets them to 5 data bits selection
+                                                          8 data bits are set by default without any configuration*/
 #define USART_DATA_BITS_6BITS     (1 << 1)                // sets data bits to 6 bits assuming the mode has been cleared
 #define USART_DATA_BITS_7BITS     (1 << 2)                // sets data bits to 7 bits assuming the mode has been cleared
 #define USART_DATA_BITS_9BITS     ((1 << 1) | (1 << 2))   // sets data bits size to 9 bits and char_size in control register B must be set to 1
 
 #define USART_CLOCK_POLARITY      (1 << 0)                /* transmitted data rising edge; received data falling edge by default;
-                                                          if this  bit is set the configuration is reversed */
+                                                          if this  bit is set to 1 the configuration is reversed
+                                                          this bit is only used for synchronous mode */
 
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------
+                                                        SPI mode flag and configuration settings 
+*/
+
+/*
+
+These are the options available to the user when in SPI mode:
+
+CTRL REGISTER A:
+
+-USART Receive complete flag
+-USART Transmit complete flag
+-USART Data register empty flag
+
+CTRL REGISTER B:
+
+-USART RX complete interrupt enable
+-USART TX complete interrupt enable
+-USART Data register empty interrupt enable
+-USART RX enable
+-USART TX enable
+
+CTRL REGISTSER C:
+
+-USART Mode selection (you must enable master SPI mode with set_mode)
+-USART Data order setting 
+-USART Clock phase setting
+-USART Clock polarity setting
+
+There are 4 different SPI modes available depending on what bits are set or cleared
+The modes selected change the leading edge and trailing edge
+for the data setup and data sample to rising or falling depending on configuration
+
+*/
+
+#define USART_CLOCK_PHASE       (1 << 1)        // This bit determines data sampling on the leading edge or trailing edge of the clock pin
+#define USART_DATA_ORDER        (1 << 2)        /* When the data order bit is set,
+                                                the least significant bit of the data is transmitted first
+                                                if the bit is cleared, the most significant bit of the data is transmitted first*/
+
+/*
+
+SPI Mode 0: This mode sets Leading edge: sample (rising) Trailing edge: setup (falling)
+SPI Mode 1: This is the default SPI mode without any config; Leading edge: setup (rising) Trailing edge: sample (falling)
+SPI Mode 2: This mode sets Leading edge: sample (falling) Trailing edge: setup (rising)
+SPI Mode 3: This mode sets Leading edge: setup (falling) Trailing edge: sample (rising)
+--------------------------------------------------------------------------------------------------------------------------------------------                                                            
 */
