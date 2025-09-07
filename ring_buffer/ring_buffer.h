@@ -13,7 +13,7 @@ uint8_t count;
 
 void ring_buffer_init(ring_buffer_t* const buffer);
 
-uint8_t ring_buffer_count(ring_buffer_t* const buffer);
+uint8_t ring_buffer_getcount(ring_buffer_t* const buffer);
 
 bool ring_buffer_full(ring_buffer_t* const buffer);
 
