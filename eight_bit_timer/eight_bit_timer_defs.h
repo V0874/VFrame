@@ -19,6 +19,35 @@
 --------------------------------------------------------------------------------------------------------------------------------------------
                                                         Timer flag and configuration settings
 */
+
+#define TIMER_TOGGLE_OUTPUT_COMPARE_PINA              (1 << 6)
+#define TIMER_CLEAR_OUTPUT_COMPARE_PINA               (1 << 7)
+#define TIMER_SET_OUTPUT_COMPARE_PINA                 (1 << 6) | (1 << 7)
+
+#define TIMER_TOGGLE_OUTPUT_COMPARE_PINB              (1 << 4)              
+#define TIMER_CLEAR_OUTPUT_COMPARE_PINB               (1 << 5)
+#define TIMER_SET_OUTPUT_COMPARE_PINB                 (1 << 4) | (1 << 5)
+
+#define TIMER_OVERFLOW_INTERRUPT_ENABLE               (1 << 0) 
+#define TIMER_OUTPUT_COMPMATCH_A_INTERRUPT_ENABLE     (1 << 1)
+#define TIMER_OUTPUT_COMPMATCH_B_INTERRUPT_ENABLE     (1 << 2)
+
+#define TIMER_OVERFLOW_FLAG                           (1 << 0)
+#define TIMER_OUTPUT_COMPMATCH_A_FLAG                 (1 << 1)
+#define TIMER_OUTPUT_COMPMATCH_B_FLAG                 (1 << 2)
+ 
+#define TIMER_NO_PRESCALER                            (1 << 0)
+#define TIMER_8PRESCALER                              (1 << 1)
+#define TIMER_64PRESCALER                             (1 << 0) | (1 << 1)
+#define TIMER_256PRESCALER                            (1 << 2)  
+#define TIMER_1024PRESCALER                           (1 << 0) | (1 << 2)
+#define TIMER_EXTCLOCK_FALLING_EDGE                   (1 << 1) | (1 << 2)
+#define TIMER_EXTCLOCK_RISING_EDGE                    (1 << 0) | (1 << 1) | (1 << 2)
+
+#define FORCE_OUTPUT_COMPARE_B                        (1 << 6)
+#define FORCE_OUTPUT_COMPARE_A                        (1 << 7)
+
+
 /*
                                                 the 8 bit timer is automatically set in normal mode by default;
                                                 however, by default the timer is configured to a maximum value of 255;
@@ -46,8 +75,8 @@
                                                         is set, the max value of the timer can effectively be set to what value
                                                         the OCRnA register holds*/
 
-#define PWM_PHASE_CORRECT_MODE2     (1 << 3)    /* this setting changes the mode to allow the top of the timer to be set to the value
-                                                of OCRnA*/
+#define PWM_PHASE_CORRECT_EXT_MODE      (1 << 3)    /* this setting changes the mode to allow the top of the timer to be set to the value
+                                                    of OCRnA; it must be combined with PWM_PHASE_CORRECT_MODE */
                                                 
-#define FAST_PWM_MODE_MODE2         (1 << 3)    /* this setting changes the mode to allow the top of the timer to be set to the value
-                                                of OCRnA*/
+#define FAST_PWM_EXT_MODE               (1 << 3)    /* this setting changes the mode to allow the top of the timer to be set to the value
+                                                    of OCRnA; it must be combined with FAST_PWM_MODE */

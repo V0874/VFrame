@@ -62,7 +62,7 @@ void usart_set_mode(volatile usart_t* usart, uint8_t config, usart_mode_t* mode)
     }
 }
 
-void set_parity_mode(volatile usart_t* usart, uint8_t config){
+void usart_set_parity_mode(volatile usart_t* usart, uint8_t config){
     usart->UCSRnC |= config;
 }
 

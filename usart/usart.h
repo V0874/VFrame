@@ -76,7 +76,7 @@ void usart_set_mode(volatile usart_t* usart, uint8_t config, usart_mode_t* mode)
                                                                                     you must pass in the mode that corresponds to the USART you are setting
                                                                                     ex: if you are using USART0, you must pass in USART0_MODE */
 
-void set_parity_mode(volatile usart_t* usart, uint8_t config);          /* even and odd parity configuration are available; 
+void usart_set_parity_mode(volatile usart_t* usart, uint8_t config);          /* even and odd parity configuration are available; 
                                                                         by default parity is disabled
                                                                         must pass in USART_EVEN/ODD_PARITY selection */
 
