@@ -1,5 +1,7 @@
 #include "usart.h"
 
+usart_mode_t usart_modes[4];
+
 void usart_enable_doublespeed(volatile usart_t* usart, usart_mode_t* mode){
     usart->UCSRnA |= USART_DBL_SPEED_CONFIG;
     *mode = USART_DBL_SPEED_MODE;

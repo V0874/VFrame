@@ -23,7 +23,7 @@ typedef enum {
     USART_SPI_MASTER_MODE
 } usart_mode_t;
 
-usart_mode_t usart_modes[4];                                            // USART mode that corresponds to each peripheral
+extern usart_mode_t usart_modes[4];                                            // USART mode that corresponds to each peripheral
 
 #define USART0_MODE (&usart_modes[0])
 #define USART1_MODE (&usart_modes[1])

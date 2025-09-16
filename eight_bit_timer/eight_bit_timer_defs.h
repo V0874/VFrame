@@ -3,17 +3,17 @@
                                                         Timer base peripheral block addresses
 */
 
-#define TIMER0_BASE                 (0x24UL)
+#define TIMER0_BASE                 (0x44UL)
 #define TIMER2_BASE                 (0xB0UL)
 
 #define TIMER0_ISR_BASE             (0x6EUL)
 #define TIMER2_ISR_BASE             (0x70UL)
 
-#define TIMER0_ISR_FLAGS_BASE       (0x15UL)
-#define TIMER2_ISR_FLAGS_BASE       (0x17UL)
+#define TIMER0_ISR_FLAGS_BASE       (0x35UL)
+#define TIMER2_ISR_FLAGS_BASE       (0x37UL)
 
 #define TIMER2_ASYNC_STATUS_BASE    (0xB6UL)
-#define TIMER2_ASYNC_CTRL_BASE      (0x23UL)
+#define TIMER2_ASYNC_CTRL_BASE      (0x43UL)
 
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------
