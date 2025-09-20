@@ -1,5 +1,6 @@
 #include "usart.h"
 
+
 usart_mode_t usart_modes[4];
 
 void usart_enable_doublespeed(volatile usart_t* usart, usart_mode_t* mode){
@@ -151,4 +152,24 @@ void usart_set_baudrate(volatile usart_t* usart, usart_mode_t* mode, uint32_t ba
             break;
         }
     }
+}
+
+void usart_init(volatile usart_t* usart, usart_mode_t* mode, uint32_t baud){
+    usart_tx_enable(usart);
+    usart_rx_enable(usart);
+    usart_enable_rx_complete_isr(usart);
+    usart_set_baudrate(usart, mode, baud);
+}
+
+void usart_sendbyte(volatile usart_t* usart, ring_buffer_t* buffer, uint8_t byte){
+    usart_enable_buffempty_isr(usart);
+    ring_buffer_write(buffer, byte);
+}
+
+void usart_send(volatile usart_t* usart, ring_buffer_t* buffer, const char* string){
+    while (*string != '\0'){
+        ring_buffer_write(buffer, *string);
+        string++;
+    }
+    usart_enable_buffempty_isr(usart);
 }

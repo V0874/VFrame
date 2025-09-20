@@ -1,6 +1,6 @@
 #include "eight_bit_timer.h"
 
-void timer_set_comparematch_mode_a(volatile timer8bit_t* timer, uint8_t config){
+void timer_set_comparematch_mode_ca(volatile timer8bit_t* timer, uint8_t config){
     timer->TCCRnA |= config;
 }
 
@@ -88,4 +88,11 @@ void timer_enable_pwm_phasecorrect_ext_mode(volatile timer8bit_t* timer){
 void timer_enable_fastpwm_ext_mode(volatile timer8bit_t* timer){
     timer->TCCRnA |= FAST_PWM_MODE;
     timer->TCCRnB |= FAST_PWM_EXT_MODE;
+}
+
+void timer_init(volatile timer8bit_t* timer){
+    timer_enable_fastpwm_ext_mode(TIMER0);
+    timer_set_output_compare_a(TIMER0, 255);
+    timer_set_prescaler(timer, TIMER_1024PRESCALER);
+    timer_set_comparematch_mode_a(TIMER0, TIMER_TOGGLE_OUTPUT_COMPARE_PINA);
 }

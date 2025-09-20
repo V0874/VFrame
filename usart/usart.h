@@ -1,17 +1,18 @@
 #include "usart_defs.h"
+#include "../ring_buffer/ring_buffer.h"
 #include "../common_defs.h"
 
 typedef struct {
-    uint8_t UCSRnA;                                    // Config and status register;  flag and config setting definitions are in usart_defs
-    uint8_t UCSRnB;                                    // Config and status register
-    uint8_t UCSRnC;                                    // Config and status register
-    uint8_t __RESERVED;                                // Not usable
-    uint8_t UBRRnL;                                    // 8 bit low byte register for setting baud rate
-    uint8_t UBRRnH;                                    // 8 bit high byte register for setting baud rate
-    uint8_t UDRn;                                      // TX and RX buffer register
+    uint8_t UCSRnA;                                    
+    uint8_t UCSRnB;                                    
+    uint8_t UCSRnC;                                    
+    uint8_t __RESERVED;                                
+    uint8_t UBRRnL;                                    
+    uint8_t UBRRnH;                                    
+    uint8_t UDRn;                                      
 } usart_t;
 
-#define USART0 ((volatile usart_t*) USART0_BASE)                        // USART peripheral starting blocks; there are 4 usarts available on the chip                         
+#define USART0 ((volatile usart_t*) USART0_BASE)                        // USART peripheral starting blocks; there are 4 usarts available;                         
 #define USART1 ((volatile usart_t*) USART1_BASE)                        
 #define USART2 ((volatile usart_t*) USART2_BASE)
 #define USART3 ((volatile usart_t*) USART3_BASE)
@@ -23,7 +24,7 @@ typedef enum {
     USART_SPI_MASTER_MODE
 } usart_mode_t;
 
-extern usart_mode_t usart_modes[4];                                            // USART mode that corresponds to each peripheral
+extern usart_mode_t usart_modes[4];                                            // mode that corresponds to each USART;
 
 #define USART0_MODE (&usart_modes[0])
 #define USART1_MODE (&usart_modes[1])
@@ -105,5 +106,10 @@ void usart_set_baudrate(volatile usart_t* usart, usart_mode_t* mode, uint32_t ba
                                                                                         ex: if you are using USART0, you must pass in USART0_MODE
                                                                                         so that the baud rate is calculated correctly based on state */
 
+void usart_init(volatile usart_t* usart, usart_mode_t* mode, uint32_t baud);            /* sets up basic 8n1 usart through USART0-USART3*/
+
+void usart_send(volatile usart_t* usart, ring_buffer_t* buffer, const char* string);    /* sends string data over TX */
+
+void usart_sendbyte(volatile usart_t* usart, ring_buffer_t* buffer, uint8_t byte);      /* sends byte values over TX */
 
 
