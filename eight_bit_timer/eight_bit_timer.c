@@ -1,10 +1,10 @@
 #include "eight_bit_timer.h"
 
-void timer_set_comparematch_mode_ca(volatile timer8bit_t* timer, uint8_t config){
+void timer_set_compareoutput_mode_ca(volatile timer8bit_t* timer, uint8_t config){
     timer->TCCRnA |= config;
 }
 
-void timer_set_comparematch_mode_b(volatile timer8bit_t* timer, uint8_t config){
+void timer_set_compareoutput_mode_b(volatile timer8bit_t* timer, uint8_t config){
     timer->TCCRnA |= config;
 }
 
