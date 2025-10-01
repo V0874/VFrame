@@ -1,4 +1,3 @@
-#pragma once
 #include "../common_defs.h"
 
 void setInput(volatile uint8_t* ddr, int pin);

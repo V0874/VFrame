@@ -1,5 +1,5 @@
 /*
---------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
                                                         Timer base peripheral block addresses
 */
 
@@ -16,7 +16,7 @@
 #define TIMER2_ASYNC_CTRL_BASE      (0x43UL)
 
 /*
---------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------
                                                         Timer flag and configuration settings
 */
 
@@ -103,14 +103,38 @@
                                                     of OCRnA; it must be combined with FAST_PWM_MODE */
 
 /*
---------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------
                                                         Timer2 specific settings (Asynchronous mode)
 */
 
-#define TIMER_ENABLE_EXT_CLOCKINPUT           (1 << 6)
-#define TIMER_ENABLE_ASYNC_MODE               (1 << 5)
-#define TIMER_UPDATE_BUSY_FLAG                (1 << 4)
-#define TIMER_COMPREGISTER_A_UPDATEBUSY_FLAG  (1 << 3)
-#define TIMER_COMPREGISTER_B_UPDATEBUSY_FLAG  (1 << 2)
-#define TIMER_CTRLREGISTER_A_UPDATEBUSY_FLAG  (1 << 1)
-#define TIMER_CTRLREGISTER_B_UPDATEBUSY_FLAG  (1 << 0)
+#define TIMER_ENABLE_EXT_CLOCKINPUT           (1 << 6) /* this setting must be set before asynchronous mode; the external clock input is enabled
+                                                       and an external clock can be input on the timer oscillator pin (TOSC1) instead of the
+                                                       32 kHz crystal. the crystal oscillator will be run by default.*/
+
+#define TIMER_ENABLE_ASYNC_MODE               (1 << 5) /* timer 2 is by default clocked from the io clock source (selected prescaler); when this 
+                                                       setting is enabled the timer is clocked from a crystal oscillator that is connected to the 
+                                                       timer oscillator pin (TOSC1); when this setting is enabled, timer values, and compare match
+                                                       register values might be corrupted*/
+
+#define TIMER_UPDATE_BUSY_FLAG                (1 << 4) /* when the timer is asynchronous and the timer counter value is written, this flag is set;
+                                                       when the timer gets updated (count increases) the flag is cleared by hardware; checking this
+                                                       flag indicates that the timer counter value is ready to be updated
+                                                       
+                                                       the behavior of the 4 other flags below are identical aside from that they are used to check 
+                                                       different behavior. once the compare registers are ready to be written to again the flag will
+                                                       be cleared, the same for the control registers. since the asynchronous timer is in a different 
+                                                       domain and runs slower than the cpu clock, synchronization is required to avoid glitches in 
+                                                       behavior.*/
+
+#define TIMER_COMPREGISTER_A_UPDATEBUSY_FLAG  (1 << 3) /* flag for timer output compare register a */
+#define TIMER_COMPREGISTER_B_UPDATEBUSY_FLAG  (1 << 2) /* flag for timer output compare register b */
+#define TIMER_CTRLREGISTER_A_UPDATEBUSY_FLAG  (1 << 1) /* flag for timer output control register a*/
+#define TIMER_CTRLREGISTER_B_UPDATEBUSY_FLAG  (1 << 0) /* flag for timer output control register b*/
+
+#define TIMER_PRESCALER_RESET                 (1 << 1) /* when this setting is enabled, the timer2 prescaler will be reset; if this setting is enabled
+                                                       whenever timer2 is in asynchronous mode, it will remain enabled until the prescaler has been 
+                                                       reset; this setting is disabled by default by the hardware and TSM bit is set (for 16 bit timers)
+                                                       this setting will not be disabled by default*/
+/*
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+*/

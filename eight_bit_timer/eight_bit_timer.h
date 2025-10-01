@@ -176,4 +176,10 @@ void timer_enable_pwm_phasecorrect_ext_mode(volatile timer8bit_t* timer);       
 void timer_enable_fastpwm_ext_mode(volatile timer8bit_t* timer);                            /* enables fast pwm extended mode; the description is similar to above
                                                                                             and the full description is in the table at the top of this file*/
 
+void enable_external_clock_input(volatile timer8bit_async_status_t* timer);                 /* enables external clock input on the external clock source pin */
+    
+void enable_asynchronous_timer(volatile timer8bit_async_status_t* timer);                   /* enables asynchronous mode for timer2 only */
+
+void timer_reset_prescaler(volatile timer8bit_async_control_t* timer);                      /* resets the prescaler for timer2 in asynchronous mode only */
+
 void timer_init(volatile timer8bit_t* timer);                                               // initializes a timer with basic settings

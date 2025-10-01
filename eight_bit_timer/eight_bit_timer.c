@@ -90,6 +90,18 @@ void timer_enable_fastpwm_ext_mode(volatile timer8bit_t* timer){
     timer->TCCRnB |= FAST_PWM_EXT_MODE;
 }
 
+void enable_external_clock_input(volatile timer8bit_async_status_t* timer){
+    timer->ASSRn |= TIMER_ENABLE_EXT_CLOCKINPUT;
+}
+
+void enable_asynchronous_timer(volatile timer8bit_async_status_t* timer){
+    timer->ASSRn |= TIMER_ENABLE_ASYNC_MODE;
+}
+
+void timer_reset_prescaler(volatile timer8bit_async_control_t* timer){
+    timer->GTCCRn |= TIMER_PRESCALER_RESET;
+}
+
 void timer_init(volatile timer8bit_t* timer){
     timer_enable_fastpwm_ext_mode(TIMER0);
     timer_set_output_compare_a(TIMER0, 255);
