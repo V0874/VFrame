@@ -13,3 +13,13 @@ typedef struct {
 
 #define ADC ((volatile adc_t*) ADC_BASE)
 
+void select_reference_bits(adc_t* adc, uint8_t mode);
+
+void reset_reference_bits(adc_t* adc);
+
+void enable_left_adjust_result(adc_t* adc);
+
+void disable_left_adjust_result(adc_t* adc);
+
+void set_analog_channel_gain_select(adc_t* adc, uint8_t mode);
+

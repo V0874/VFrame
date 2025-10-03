@@ -1,6 +1,6 @@
 #include "eight_bit_timer.h"
 
-void timer_set_compareoutput_mode_ca(volatile timer8bit_t* timer, uint8_t config){
+void timer_set_compareoutput_mode_a(volatile timer8bit_t* timer, uint8_t config){
     timer->TCCRnA |= config;
 }
 
@@ -19,6 +19,7 @@ void timer_force_output_compare_a(volatile timer8bit_t* timer){
 void timer_set_prescaler(volatile timer8bit_t* timer, uint8_t config){
     timer->TCCRnB |= config;
 }
+
 uint8_t timer_read_counter(volatile timer8bit_t* timer){
     return timer->TCNTn;
 }

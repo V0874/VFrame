@@ -32,7 +32,6 @@ extern usart_mode_t usart_modes[4];                                            /
 #define USART3_MODE (&usart_modes[3])
 
 
-
 void usart_enable_doublespeed(volatile usart_t* usart, usart_mode_t* mode);         /* enables double transmission speed for asynchronous usart config
                                                                                     changes the baud rate divisor from 16 to 8
                                                                                     you must pass in the mode that corresponds to the USART you are setting
