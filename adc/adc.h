@@ -13,13 +13,32 @@ typedef struct {
 
 #define ADC ((volatile adc_t*) ADC_BASE)
 
-void select_reference_bits(adc_t* adc, uint8_t mode);
+void adc_set_voltage_ref(adc_t* adc, uint8_t mode);
 
-void reset_reference_bits(adc_t* adc);
+void adc_reset_voltage_ref(adc_t* adc);
 
-void enable_left_adjust_result(adc_t* adc);
+void adc_enable_left_adjust_result(adc_t* adc);
 
-void disable_left_adjust_result(adc_t* adc);
+void adc_disable_left_adjust_result(adc_t* adc);
 
-void set_analog_channel_gain_select(adc_t* adc, uint8_t mode);
+void adc_set_analog_channel(adc_t* adc, uint8_t mode);
 
+void adc_enable(adc_t* adc);
+
+void adc_disable(adc_t* adc);
+
+void adc_start_conversion(adc_t* adc);
+
+void adc_auto_trigger_enable(adc_t* adc);
+
+void adc_enable_interrupt(adc_t* adc);
+
+void adc_disable_interrupt(adc_t* adc);
+
+void adc_set_prescaler(adc_t* adc, uint8_t mode);
+
+void adc_auto_trigger_source(adc_t* adc, uint8_t mode);
+
+void adc_digital_input_disable_0(adc_t* adc, uint8_t mode);
+
+void adc_digital_input_disable_2(adc_t* adc, uint8_t mode);

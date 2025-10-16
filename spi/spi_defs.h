@@ -1,0 +1,20 @@
+
+#define SPI_BASE (0x4CUL)
+
+#define SPI_INTERRUPT_ENABLE        (1 << 7)
+#define SPI_ENABLE                  (1 << 6)
+#define SPI_DATA_ORDER_SELECT       (1 << 5)
+#define SPI_MASTER_SLAVE_SELECT     (1 << 4)
+#define SPI_CLOCK_POLARITY_SELECT   (1 << 3)
+#define SPI_CLOCK_PHASE_SELECT      (1 << 2)
+#define SPI_CLOCK_RATE_FREQ_16      (1 << 0)
+#define SPI_CLOCK_RATE_FREQ_64      (1 << 1)
+#define SPI_CLOCK_RATE_FREQ_128     (1 << 0) | (1 << 1)
+#define SPI_CLOCK_RATE_FREQ_2       (1 << 0) | (1 << 1)
+#define SPI_CLOCK_RATE_FREQ_8       (1 << 0)
+#define SPI_CLOCK_RATE_FREQ_32      (1 << 1)
+#define SPI_CLOCK_RATE_FREQ_64      (1 << 0) | (1 << 1)
+#define SPI_INTERRUPT_FLAG          (1 << 7)
+#define SPI_WRITE_COLLISION_FLAG    (1 << 6)
+#define SPI_DOUBLE_SPEED_ENABLE     (1 << 0)
+

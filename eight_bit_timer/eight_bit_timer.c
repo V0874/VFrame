@@ -91,11 +91,11 @@ void timer_enable_fastpwm_ext_mode(volatile timer8bit_t* timer){
     timer->TCCRnB |= FAST_PWM_EXT_MODE;
 }
 
-void enable_external_clock_input(volatile timer8bit_async_status_t* timer){
+void timer_enable_external_clock(volatile timer8bit_async_status_t* timer){
     timer->ASSRn |= TIMER_ENABLE_EXT_CLOCKINPUT;
 }
 
-void enable_asynchronous_timer(volatile timer8bit_async_status_t* timer){
+void timer_enable_async_mode(volatile timer8bit_async_status_t* timer){
     timer->ASSRn |= TIMER_ENABLE_ASYNC_MODE;
 }
 
