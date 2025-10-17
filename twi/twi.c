@@ -40,7 +40,7 @@ void twi_disable_interrupt(twi_t* twi){
     twi->TWCRn &= ~TWI_INTERRUPT_ENABLE;
 }
 
-uint8_t twi_read_status(twi_t* twi){
+uint8_t twi_check_status(twi_t* twi){
     uint8_t mask = 0xF8;
     uint8_t status = twi->TWSRn & mask;
     return status;
