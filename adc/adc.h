@@ -11,7 +11,7 @@ typedef struct {
     uint8_t DIDR0n;
 } adc_t;
 
-#define ADC ((volatile adc_t*) ADC_BASE)
+#define ADC0 ((volatile adc_t*) ADC_BASE)
 
 void adc_set_voltage_ref(adc_t* adc, uint8_t mode);
 

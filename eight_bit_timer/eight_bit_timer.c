@@ -107,5 +107,5 @@ void timer_init(volatile timer8bit_t* timer){
     timer_enable_fastpwm_ext_mode(TIMER0);
     timer_set_output_compare_a(TIMER0, 255);
     timer_set_prescaler(timer, TIMER_1024PRESCALER);
-    timer_set_comparematch_mode_a(TIMER0, TIMER_TOGGLE_OUTPUT_COMPARE_PINA);
+    timer_set_compareoutput_mode_a(TIMER0, TIMER_TOGGLE_OUTPUT_COMPARE_PINA);
 }

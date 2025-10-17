@@ -13,7 +13,7 @@
 #define SPI_CLOCK_RATE_FREQ_2       (1 << 0) | (1 << 1)
 #define SPI_CLOCK_RATE_FREQ_8       (1 << 0)
 #define SPI_CLOCK_RATE_FREQ_32      (1 << 1)
-#define SPI_CLOCK_RATE_FREQ_64      (1 << 0) | (1 << 1)
+#define SPI_CLOCK_RATE_FREQ_64_DBL  (1 << 0) | (1 << 1)
 #define SPI_INTERRUPT_FLAG          (1 << 7)
 #define SPI_WRITE_COLLISION_FLAG    (1 << 6)
 #define SPI_DOUBLE_SPEED_ENABLE     (1 << 0)

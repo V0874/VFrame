@@ -1,5 +1,7 @@
+#pragma once
 #include "../common_defs.h"
 #include <util/atomic.h>
+
 
 #define BUFFER_SIZE 255
 
