@@ -47,3 +47,4 @@ typedef struct{
 #define TIMER5_ISR_FLAGS ((volatile timer_16bit_isr_flags_t*) TIMER5_ISR_FLAGS_BASE)
 
 #define TIMER_SYNC_CTRL ((volatile timer_16bit_sync_ctrl_t*) TIMER_SYNC_CTRL_BASE)
+
