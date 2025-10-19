@@ -40,7 +40,7 @@ typedef struct {
 #define TIMER2_ASYNC_CTRL ((volatile timer8bit_async_control_t*) TIMER2_ASYNC_CTRL_BASE)    /* async control selections / for timer02 only */
 
 
-void timer_set_compareoutput_mode_a(volatile timer8bit_t* timer, uint8_t config);            /*------------------------------------------------------------------------------------------------
+void timer8bit_set_compareoutput_mode_a(volatile timer8bit_t* timer, uint8_t config);            /*------------------------------------------------------------------------------------------------
 
                                                                                             sets the desired compare match A pin mode.
 
@@ -79,49 +79,49 @@ void timer_set_compareoutput_mode_a(volatile timer8bit_t* timer, uint8_t config)
                                                                                             ------------------------------------------------------------------------------------------------*/
                                                                                             
 
-void timer_set_compareoutput_mode_b(volatile timer8bit_t* timer, uint8_t config);            // description above
+void timer8bit_set_compareoutput_mode_b(volatile timer8bit_t* timer, uint8_t config);            // description above
 
-void timer_force_output_compare_b(volatile timer8bit_t* timer);                             /* enables a forced output compare match event for the current timer; this setting is only 
+void timer8bit_force_output_compare_b(volatile timer8bit_t* timer);                             /* enables a forced output compare match event for the current timer; this setting is only 
                                                                                             available for non-PWM modes and will implement a strobe; furthermore, it will not generate
                                                                                             an interrupt nor will it clear the timer in CTC mode*/
 
-void timer_force_output_compare_a(volatile timer8bit_t* timer);                             // description above
+void timer8bit_force_output_compare_a(volatile timer8bit_t* timer);                             // description above
 
-void timer_set_prescaler(volatile timer8bit_t* timer, uint8_t config);                      /* sets the desired prescaler for the current timer clock source; the available modes are:
+void timer8bit_set_prescaler(volatile timer8bit_t* timer, uint8_t config);                      /* sets the desired prescaler for the current timer clock source; the available modes are:
                                                                                             no clock source (by default), no prescaler, /8, /64, /256, /1024 (the system clock will be 
                                                                                             divided by the prescaler selected and used for the timer clock source); furthermore, there is 
                                                                                             a setting to provide an external clock source to the Tn pin that will increment the counter 
                                                                                             based on the falling edge/rising edge of the timer clock source.*/
 
-void timer_set_counter(volatile timer8bit_t* timer, uint8_t value);                         /* sets the current timer counter value; if written to, the current compare match will be removed 
+void timer8bit_set_counter(volatile timer8bit_t* timer, uint8_t value);                         /* sets the current timer counter value; if written to, the current compare match will be removed 
                                                                                             on the timer clock as well as risks missing a compare match*/
 
-uint8_t timer_read_counter(volatile timer8bit_t* timer);                                    // reads the current value of the current timer
+uint8_t timer8bit_read_counter(volatile timer8bit_t* timer);                                    // reads the current value of the current timer
 
-void timer_set_output_compare_a(volatile timer8bit_t* timer, uint8_t value);                /* sets the output compare match A value that is continuously compared with the current value
+void timer8bit_set_output_compare_a(volatile timer8bit_t* timer, uint8_t value);                /* sets the output compare match A value that is continuously compared with the current value
                                                                                             of the timer; the compare match can generate an interrupt or generate a waveform on the OCnA pin */
 
-uint8_t timer_read_output_compare_a(volatile timer8bit_t* timer);                           // reads the current value of the output compare match A register for the current timer
+uint8_t timer8bit_read_output_compare_a(volatile timer8bit_t* timer);                           // reads the current value of the output compare match A register for the current timer
 
-void timer_set_output_compare_b(volatile timer8bit_t* timer, uint8_t value);
+void timer8bit_set_output_compare_b(volatile timer8bit_t* timer, uint8_t value);
 
-uint8_t timer_read_output_compare_b(volatile timer8bit_t* timer);                           // description above for both set and read
+uint8_t timer8bit_read_output_compare_b(volatile timer8bit_t* timer);                           // description above for both set and read
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
                                                                                             /* the interrupts below must be passed the proper TIMER0/TIMER2_INTERRUPTS based on what is desired */
 
-void timer_enable_overflow_interrupt(volatile timer8bit_interrupts_t* timer);               // enables overflow ISR on the current timer
+void timer8bit_enable_overflow_interrupt(volatile timer8bit_interrupts_t* timer);               // enables overflow ISR on the current timer
 
-void timer_disable_overflow_interrupt(volatile timer8bit_interrupts_t* timer);              // disables overflow ISR on the current timer
+void timer8bit_disable_overflow_interrupt(volatile timer8bit_interrupts_t* timer);              // disables overflow ISR on the current timer
 
-void timer_enable_compmatch_a_interrupt(volatile timer8bit_interrupts_t* timer);            // enables compare match A interrupt on the current timer
+void timer8bit_enable_compmatch_a_interrupt(volatile timer8bit_interrupts_t* timer);            // enables compare match A interrupt on the current timer
 
-void timer_disable_compmatch_a_interrupt(volatile timer8bit_interrupts_t* timer);           // disables compare match A interrupt on the current timer
+void timer8bit_disable_compmatch_a_interrupt(volatile timer8bit_interrupts_t* timer);           // disables compare match A interrupt on the current timer
 
-void timer_enable_compmatch_b_interrupt(volatile timer8bit_interrupts_t* timer);            // enables compare match B interrupt on the current timer
+void timer8bit_enable_compmatch_b_interrupt(volatile timer8bit_interrupts_t* timer);            // enables compare match B interrupt on the current timer
 
-void timer_disable_compmatch_b_interrupt(volatile timer8bit_interrupts_t* timer);           // disables compare match B interrupt on the current timer
+void timer8bit_disable_compmatch_b_interrupt(volatile timer8bit_interrupts_t* timer);           // disables compare match B interrupt on the current timer
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
                                                                                             /*--------------------  NORMAL -----------------------------------------------------------------------
@@ -162,24 +162,24 @@ void timer_disable_compmatch_b_interrupt(volatile timer8bit_interrupts_t* timer)
                                                                                             
                                                                                             */
                                                                                            
-void timer_enable_pwm_phasecorrect_mode(volatile timer8bit_t* timer);                       // enables PWM phase correct mode for the current timer
+void timer8bit_enable_pwm_phasecorrect_mode(volatile timer8bit_t* timer);                       // enables PWM phase correct mode for the current timer
 
-void timer_enable_ctc_mode(volatile timer8bit_t* timer);                                    // enables CTC mode for the current timer
+void timer8bit_enable_ctc_mode(volatile timer8bit_t* timer);                                    // enables CTC mode for the current timer
 
-void timer_enable_fastpwm_mode(volatile timer8bit_t* timer);                                // enables fast PWM mode for the current timer
+void timer8bit_enable_fastpwm_mode(volatile timer8bit_t* timer);                                // enables fast PWM mode for the current timer
 
-void timer_enable_pwm_phasecorrect_ext_mode(volatile timer8bit_t* timer);                   /* enables pwm phase correct extended mode for the current timer;
+void timer8bit_enable_pwm_phasecorrect_ext_mode(volatile timer8bit_t* timer);                   /* enables pwm phase correct extended mode for the current timer;
                                                                                             i have labeled it extended mode because of the behavior of the top 
                                                                                             value when the setting is set; the full description is in the table 
                                                                                             near the top of this file for setting compare output mode */
 
-void timer_enable_fastpwm_ext_mode(volatile timer8bit_t* timer);                            /* enables fast pwm extended mode; the description is similar to above
+void timer8bit_enable_fastpwm_ext_mode(volatile timer8bit_t* timer);                            /* enables fast pwm extended mode; the description is similar to above
                                                                                             and the full description is in the table at the top of this file*/
 
-void timer_enable_external_clock(volatile timer8bit_async_status_t* timer);                 /* enables external clock input on the external clock source pin */
+void timer8bit_enable_external_clock(volatile timer8bit_async_status_t* timer);                 /* enables external clock input on the external clock source pin */
     
-void timer_enable_async_mode(volatile timer8bit_async_status_t* timer);                   /* enables asynchronous mode for timer2 only */
+void timer8bit_enable_async_mode(volatile timer8bit_async_status_t* timer);                   /* enables asynchronous mode for timer2 only */
 
-void timer_reset_prescaler(volatile timer8bit_async_control_t* timer);                      /* resets the prescaler for timer2 in asynchronous mode only */
+void timer8bit_reset_prescaler(volatile timer8bit_async_control_t* timer);                      /* resets the prescaler for timer2 in asynchronous mode only */
 
-void timer_init(volatile timer8bit_t* timer);                                               // initializes a timer with basic settings
+void timer8bit_init(volatile timer8bit_t* timer);                                               // initializes a timer with basic settings
