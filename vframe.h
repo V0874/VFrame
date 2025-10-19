@@ -3,5 +3,6 @@
 #include "gpio/gpio.h"
 #include "spi/spi.h"
 #include "usart/usart.h"
-#include "eight_bit_timer/eight_bit_timer.h"
+#include "8_bit_timer/8_bit_timer.h"
 #include "ring_buffer/ring_buffer.h"
+#include "16_bit_timer/16_bit_timer.h"
