@@ -1,5 +1,5 @@
 #include "watchdog_defs.h"
-#include "common_defs.h"
+#include "../common_defs.h"
 
 typedef struct{
     uint8_t MCUSRn;
@@ -12,10 +12,10 @@ typedef struct{
 #define WATCHDOG0 ((volatile watchdog_ctrl_t*) WATCHDOG_CTRL_BASE)
 #define MCU_STATUS ((volatile mcu_status_t*) MCU_STATUS_BASE)
 
-void watchdog_config(watchdog_t* watchdog, uint8_t prescaler, uint8_t mode);
+void watchdog_config(volatile watchdog_t* watchdog, uint8_t prescaler, uint8_t mode);
 
-void watchdog_disable(watchdog_t* watchdog, mcu_status_t* mcu);
+void watchdog_disable(volatile watchdog_t* watchdog, mcu_status_t* mcu);
 
 static inline void watchdog_kick(){
-    __asm__volatile("wdr");
+    asm volatile("wdr");
 }
