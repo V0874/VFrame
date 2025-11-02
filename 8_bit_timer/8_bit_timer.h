@@ -93,19 +93,19 @@ void timer8bit_set_prescaler(volatile timer8bit_t* timer, uint8_t config);      
                                                                                             a setting to provide an external clock source to the Tn pin that will increment the counter 
                                                                                             based on the falling edge/rising edge of the timer clock source.*/
 
-void timer8bit_set_counter(volatile timer8bit_t* timer, uint8_t value);                         /* sets the current timer counter value; if written to, the current compare match will be removed 
+void timer8bit_set_counter_value(volatile timer8bit_t* timer, uint8_t value);                         /* sets the current timer counter value; if written to, the current compare match will be removed 
                                                                                             on the timer clock as well as risks missing a compare match*/
 
-uint8_t timer8bit_read_counter(volatile timer8bit_t* timer);                                    // reads the current value of the current timer
+uint8_t timer8bit_read_counter_value(volatile timer8bit_t* timer);                                    // reads the current value of the current timer
 
-void timer8bit_set_output_compare_a(volatile timer8bit_t* timer, uint8_t value);                /* sets the output compare match A value that is continuously compared with the current value
+void timer8bit_set_output_compare_a_value(volatile timer8bit_t* timer, uint8_t value);                /* sets the output compare match A value that is continuously compared with the current value
                                                                                             of the timer; the compare match can generate an interrupt or generate a waveform on the OCnA pin */
 
-uint8_t timer8bit_read_output_compare_a(volatile timer8bit_t* timer);                           // reads the current value of the output compare match A register for the current timer
+uint8_t timer8bit_read_output_compare_a_value(volatile timer8bit_t* timer);                           // reads the current value of the output compare match A register for the current timer
 
-void timer8bit_set_output_compare_b(volatile timer8bit_t* timer, uint8_t value);
+void timer8bit_set_output_compare_b_value(volatile timer8bit_t* timer, uint8_t value);
 
-uint8_t timer8bit_read_output_compare_b(volatile timer8bit_t* timer);                           // description above for both set and read
+uint8_t timer8bit_read_output_compare_b_value(volatile timer8bit_t* timer);                           // description above for both set and read
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -182,4 +182,4 @@ void timer8bit_enable_async_mode(volatile timer8bit_async_status_t* timer);     
 
 void timer8bit_reset_prescaler(volatile timer8bit_async_ctrl_t* timer);                      /* resets the prescaler for timer2 in asynchronous mode only */
 
-void timer8bit_init(volatile timer8bit_t* timer);                                               // initializes a timer with basic settings
+void timer8bit_init(volatile timer8bit_t* timer);                                               /* initializes a timer with basic settings */

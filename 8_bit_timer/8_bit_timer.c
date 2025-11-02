@@ -20,27 +20,27 @@ void timer8bit_set_prescaler(volatile timer8bit_t* timer, uint8_t config){
     timer->TCCRnB |= config;
 }
 
-uint8_t timer8bit_read_counter(volatile timer8bit_t* timer){
+uint8_t timer8bit_read_counter_value(volatile timer8bit_t* timer){
     return timer->TCNTn;
 }
 
-void timer8bit_set_counter(volatile timer8bit_t* timer, uint8_t value){
+void timer8bit_set_counter_value(volatile timer8bit_t* timer, uint8_t value){
     timer->TCNTn = value;
 }
 
-uint8_t timer8bit_read_output_compare_a(volatile timer8bit_t* timer){
+uint8_t timer8bit_read_output_compare_a_value(volatile timer8bit_t* timer){
     return timer->OCRnA;
 }
 
-void timer8bit_set_output_compare_a(volatile timer8bit_t* timer, uint8_t value){
+void timer8bit_set_output_compare_a_value(volatile timer8bit_t* timer, uint8_t value){
     timer->OCRnA = value;
 }
 
-uint8_t timer8bit_read_output_compare_b(volatile timer8bit_t* timer){
+uint8_t timer8bit_read_output_compare_b_value(volatile timer8bit_t* timer){
     return timer->OCRnB;
 }
 
-void timer8bit_set_output_compare_b(volatile timer8bit_t* timer, uint8_t value){
+void timer8bit_set_output_compare_b_value(volatile timer8bit_t* timer, uint8_t value){
     timer->OCRnB = value;
 }
 
