@@ -48,32 +48,32 @@ typedef struct{
 
 #define TIMER_SYNC_CTRL ((volatile timer16bit_sync_ctrl_t*) TIMER_SYNC_CTRL_BASE)
 
-uint16_t timer16bit_read_timer_value(timer16bit_t* timer);
+uint16_t timer16bit_read_timer_value(volatile timer16bit_t* timer);
 
-void timer16bit_set_timer_value(timer16bit_t* timer, uint16_t value);
+void timer16bit_set_timer_value(volatile timer16bit_t* timer, uint16_t value);
 
-uint16_t timer16bit_read_output_compare_a(timer16bit_t* timer);
+uint16_t timer16bit_read_output_compare_a(volatile timer16bit_t* timer);
 
-void timer16bit_set_output_compare_a_value(timer16bit_t* timer, uint16_t value);
+void timer16bit_set_output_compare_a_value(volatile timer16bit_t* timer, uint16_t value);
 
-uint16_t timer16bit_read_output_compare_b_value(timer16bit_t* timer);
+uint16_t timer16bit_read_output_compare_b_value(volatile timer16bit_t* timer);
 
-void timer16bit_set_output_compare_b_value(timer16bit_t* timer, uint16_t value);
+void timer16bit_set_output_compare_b_value(volatile timer16bit_t* timer, uint16_t value);
 
-uint16_t timer16bit_read_output_compare_c_value(timer16bit_t* timer);
+uint16_t timer16bit_read_output_compare_c_value(volatile timer16bit_t* timer);
 
-void timer16bit_set_output_compare_c_value(timer16bit_t* timer, uint16_t value);
+void timer16bit_set_output_compare_c_value(volatile timer16bit_t* timer, uint16_t value);
 
-uint16_t timer16bit_read_input_capture_value(timer16bit_t* timer);
+uint16_t timer16bit_read_input_capture_value(volatile timer16bit_t* timer);
 
-void timer16bit_set_input_capture_value(timer16bit_t* timer, uint16_t value);
+void timer16bit_set_input_capture_value(volatile timer16bit_t* timer, uint16_t value);
 
-void timer16bit_input_capture_enable_interrupt(timer16bit_interrupts_t* timer);
+void timer16bit_input_capture_enable_interrupt(volatile timer16bit_interrupts_t* timer);
 
-void timer16bit_output_compare_c_match_interrupt_enable(timer16bit_interrupts_t* timer);
+void timer16bit_output_compare_c_match_interrupt_enable(volatile timer16bit_interrupts_t* timer);
 
-void timer16bit_output_compare_b_match_interrupt_enable(timer16bit_interrupts_t* timer);
+void timer16bit_output_compare_b_match_interrupt_enable(volatile timer16bit_interrupts_t* timer);
 
-void timer16bit_output_compare_a_match_interrupt_enable(timer16bit_interrupts_t* timer);
+void timer16bit_output_compare_a_match_interrupt_enable(volatile timer16bit_interrupts_t* timer);
 
-void timer16bit_overflow_interrupt_enable(timer16bit_interrupts_t* timer);
+void timer16bit_overflow_interrupt_enable(volatile timer16bit_interrupts_t* timer);
