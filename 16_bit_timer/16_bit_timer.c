@@ -1,5 +1,9 @@
 #include "16_bit_timer.h"
 
+void timer16bit_set_prescaler(volatile timer16bit_t* timer, uint8_t mode){
+    timer->TCCRnB |= mode;
+}
+
 uint16_t timer16bit_read_timer_value(volatile timer16bit_t* timer){
     uint8_t timer_low = timer->TCNTnL;
     uint8_t timer_high = timer->TCNTnH;
@@ -7,7 +11,8 @@ uint16_t timer16bit_read_timer_value(volatile timer16bit_t* timer){
 }
 
 void timer16bit_set_timer_value(volatile timer16bit_t* timer, uint16_t value){
-
+    timer->TCNTnH = (uint8_t) (value >> 8);
+    timer->TCNTnL = (uint8_t) value;
 }
 
 uint16_t timer16bit_read_output_compare_a(volatile timer16bit_t* timer){
@@ -17,7 +22,8 @@ uint16_t timer16bit_read_output_compare_a(volatile timer16bit_t* timer){
 }
 
 void timer16bit_set_output_compare_a_value(volatile timer16bit_t* timer, uint16_t value){
-
+    timer->OCRnAH = (uint8_t) (value >> 8);
+    timer->OCRnAL = (uint8_t) value;
 }
 
 uint16_t timer16bit_read_output_compare_b_value(volatile timer16bit_t* timer){
@@ -27,7 +33,8 @@ uint16_t timer16bit_read_output_compare_b_value(volatile timer16bit_t* timer){
 }
 
 void timer16bit_set_output_compare_b_value(volatile timer16bit_t* timer, uint16_t value){
-
+    timer->OCRnBH = (uint8_t) (value >> 8);
+    timer->OCRnBL = (uint8_t) value;
 }
 
 uint16_t timer16bit_read_output_compare_c_value(volatile timer16bit_t* timer){
@@ -37,7 +44,8 @@ uint16_t timer16bit_read_output_compare_c_value(volatile timer16bit_t* timer){
 }
 
 void timer16bit_set_output_compare_c_value(volatile timer16bit_t* timer, uint16_t value){
-
+    timer->OCRnCH = (uint8_t) (value >> 8);
+    timer->OCRnCL = (uint8_t) value;
 }
 
 uint16_t timer16bit_read_input_capture_value(volatile timer16bit_t* timer){
@@ -47,25 +55,46 @@ uint16_t timer16bit_read_input_capture_value(volatile timer16bit_t* timer){
 }
 
 void timer16bit_set_input_capture_value(volatile timer16bit_t* timer, uint16_t value){
-
+    timer->ICRnH = (uint8_t) (value >> 8);
+    timer->ICRnL = (uint8_t) value;
 }
 
-void timer16bit_input_capture_enable_interrupt(volatile timer16bit_interrupts_t* timer){
+void timer16bit_enable_input_capture_interrupt(volatile timer16bit_interrupts_t* timer){
     timer->TIMSKn |= TIMER_INPUT_CAPTURE_INTERRUPT_ENABLE;
 }
 
-void timer16bit_output_compare_c_match_interrupt_enable(volatile timer16bit_interrupts_t* timer){
+void timer16bit_disable_input_capture_interrupt(volatile timer16bit_interrupts_t* timer){
+    timer->TIMSKn &= ~TIMER_INPUT_CAPTURE_INTERRUPT_ENABLE;
+}
+
+void timer16bit_enable_output_compare_c_match_interrupt(volatile timer16bit_interrupts_t* timer){
     timer->TIMSKn |= TIMER_OUTPUT_COMPARE_C_MATCH_INTERRUPT_ENABLE;
 }
 
-void timer16bit_output_compare_b_match_interrupt_enable(volatile timer16bit_interrupts_t* timer){
+void timer16bit_disable_output_compare_c_match_interrupt(volatile timer16bit_interrupts_t* timer){
+    timer->TIMSKn &= ~TIMER_OUTPUT_COMPARE_C_MATCH_INTERRUPT_ENABLE;
+}
+
+void timer16bit_enable_output_compare_b_match_interrupt(volatile timer16bit_interrupts_t* timer){
     timer->TIMSKn |= TIMER_OUTPUT_COMPARE_B_MATCH_INTERRUPT_ENABLE;
 }
 
-void timer16bit_output_compare_a_match_interrupt_enable(volatile timer16bit_interrupts_t* timer){
+void timer16bit_disable_output_compare_b_match_interrupt(volatile timer16bit_interrupts_t* timer){
+    timer->TIMSKn &= ~TIMER_OUTPUT_COMPARE_B_MATCH_INTERRUPT_ENABLE;
+}
+
+void timer16bit_enable_output_compare_a_match_interrupt(volatile timer16bit_interrupts_t* timer){
     timer->TIMSKn |= TIMER_OUTPUT_COMPARE_A_MATCH_INTERRUPT_ENABLE;
 }
 
-void timer16bit_overflow_interrupt_enable(volatile timer16bit_interrupts_t* timer){
+void timer16bit_disable_output_compare_a_match_interrupt(volatile timer16bit_interrupts_t* timer){
+    timer->TIMSKn &= ~TIMER_OUTPUT_COMPARE_A_MATCH_INTERRUPT_ENABLE;
+}
+
+void timer16bit_enable_overflow_interrupt(volatile timer16bit_interrupts_t* timer){
     timer->TIMSKn |= TIMER_OVERFLOW_INTERRUPT_ENABLE;
+}
+
+void timer16bit_disable_overflow_interrupt(volatile timer16bit_interrupts_t* timer){
+    timer->TIMSKn &= ~TIMER_OVERFLOW_INTERRUPT_ENABLE;
 }

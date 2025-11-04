@@ -48,6 +48,8 @@ typedef struct{
 
 #define TIMER_SYNC_CTRL ((volatile timer16bit_sync_ctrl_t*) TIMER_SYNC_CTRL_BASE)
 
+void timer16bit_set_prescaler(volatile timer16bit_t* timer, uint8_t mode);
+
 uint16_t timer16bit_read_timer_value(volatile timer16bit_t* timer);
 
 void timer16bit_set_timer_value(volatile timer16bit_t* timer, uint16_t value);
