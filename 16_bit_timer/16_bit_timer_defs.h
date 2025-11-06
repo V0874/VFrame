@@ -16,6 +16,9 @@
 
 #define TIMER_SYNC_CTRL_BASE                            (0x43UL)
 
+#define TIMER_INPUT_CAPTURE_EDGE_SELECT                 (1 << 6)
+#define TIMER_INPUT_CAPTURE_NOISE_CANCELER              (1 << 7)
+
 #define TIMER_NO_PRESCALER                              (1 << 0)
 #define TIMER_8PRESCALER                                (1 << 1)
 #define TIMER_64PRESCALER                               (1 << 0) | (1 << 1)
@@ -24,11 +27,15 @@
 #define TIMER_TNPIN_FALLING_EDGE                        (1 << 1) | (1 << 2)
 #define TIMER_TNPIN_RISING_EDGE                         (1 << 0) | (1 << 1) | (1 << 2)
 
+#define TIMER_FORCE_OUTPUT_COMPARE_A                    (1 << 7)
+#define TIMER_FORCE_OUTPUT_COMPARE_B                    (1 << 6)
+#define TIMER_FORCE_OUTPUT_COMPARE_C                    (1 << 5)
+
 #define TIMER_INPUT_CAPTURE_INTERRUPT_ENABLE            (1 << 5)
 #define TIMER_OUTPUT_COMPARE_C_MATCH_INTERRUPT_ENABLE   (1 << 3)
 #define TIMER_OUTPUT_COMPARE_B_MATCH_INTERRUPT_ENABLE   (1 << 2)
 #define TIMER_OUTPUT_COMPARE_A_MATCH_INTERRUPT_ENABLE   (1 << 1)
-#define TIMER_OVERFLOW_INTERRUPT_ENABLE          (1 << 0)
+#define TIMER_OVERFLOW_INTERRUPT_ENABLE                 (1 << 0)
 
 #define TIMER_INPUT_CAPTURE_FLAG                        (1 << 5)
 #define TIMER_OUTPUT_COMPARE_C_MATCH_FLAG               (1 << 3)

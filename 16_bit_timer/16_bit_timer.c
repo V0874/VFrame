@@ -1,7 +1,35 @@
 #include "16_bit_timer.h"
 
+void timer16bit_enable_input_capture_noise_cancel(timer16bit_t* timer){
+    timer->TCCRnB |= TIMER_INPUT_CAPTURE_NOISE_CANCELER;
+}
+
+void timer16bit_disable_input_capture_noise_cancel(timer16bit_t* timer){
+    timer->TCCRnB &= ~TIMER_INPUT_CAPTURE_NOISE_CANCELER;
+}
+
+void timer16bit_input_capture_edge_select(timer16bit_t* timer, uint8_t mode){
+    if(mode == 0){
+        timer->TCCRnB &= ~TIMER_INPUT_CAPTURE_EDGE_SELECT;
+    } else {
+        timer->TCCRnB |= TIMER_INPUT_CAPTURE_EDGE_SELECT;
+    }
+}
+
 void timer16bit_set_prescaler(volatile timer16bit_t* timer, uint8_t mode){
     timer->TCCRnB |= mode;
+}
+
+void timer16bit_force_output_compare_a(volatile timer16bit_t* timer){
+    timer->TCCRnC |= TIMER_FORCE_OUTPUT_COMPARE_A;
+}
+
+void timer16bit_force_output_compare_b(volatile timer16bit_t* timer){
+    timer->TCCRnC |= TIMER_FORCE_OUTPUT_COMPARE_B;
+}
+
+void timer16bit_force_output_compare_c(volatile timer16bit_t* timer){
+    timer->TCCRnC |= TIMER_FORCE_OUTPUT_COMPARE_C;
 }
 
 uint16_t timer16bit_read_timer_value(volatile timer16bit_t* timer){
