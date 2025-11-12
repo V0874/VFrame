@@ -1,5 +1,14 @@
 #include "16_bit_timer.h"
 
+void timer16bit_timer_mode(timer16bit_t* timer, uint8_t mode){
+    uint8_t tccrna_bits = mode & 0x03;
+    uint8_t tccrnb_bits = mode & 0x18;
+    timer->TCCRnA &= ~tccrna_bits;
+    timer->TCCRnB &= ~tccrnb_bits;
+    timer->TCCRnA |= tccrna_bits;
+    timer->TCCRnB |= tccrnb_bits;
+}
+
 void timer16bit_enable_input_capture_noise_cancel(timer16bit_t* timer){
     timer->TCCRnB |= TIMER_INPUT_CAPTURE_NOISE_CANCELER;
 }

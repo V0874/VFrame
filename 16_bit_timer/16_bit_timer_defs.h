@@ -16,6 +16,21 @@
 
 #define TIMER_SYNC_CTRL_BASE                            (0x43UL)
 
+#define TIMER_PWM_PHASE_CORRECT_8BIT                    (0x01)
+#define TIMER_PWM_PHASE_CORRECT_9BIT                    (0x02)
+#define TIMER_PWM_PHASE_CORRECT_10BIT                   (0x03)
+#define TIMER_CTC_OCRnA_TOP                             (0x08)
+#define TIMER_FAST_PWM_8BIT                             (0x09)
+#define TIMER_FAST_PWM_9BIT                             (0x0A)
+#define TIMER_FAST_PWM_10BIT                            (0x0B)
+#define TIMER_PWM_PHASEFREQ_CORRECT_ICRn_TOP            (0x10)
+#define TIMER_PWM_PHASEFREQ_CORRECT_OCRnA_TOP           (0x11)
+#define TIMER_PWM_PHASE_CORRECT_ICRn_TOP                (0x12)
+#define TIMER_PWM_PHASE_CORRECT_OCRnA_TOP               (0x13)
+#define TIMER_CTC_ICRn_TOP                              (0x18)
+#define TIMER_FAST_PWM_ICRn_TOP                         (0x1A)
+#define TIMER_FAST_PWM_OCRnA_TOP                        (0x1B)
+
 #define TIMER_INPUT_CAPTURE_EDGE_SELECT                 (1 << 6)
 #define TIMER_INPUT_CAPTURE_NOISE_CANCELER              (1 << 7)
 
