@@ -16,7 +16,7 @@ void setHigh(volatile uint8_t* port, int pin){
     *port |= (1 << pin);
 }
 
-bool readPin(volatile uint8_t* mainpin, int pin){
-   return (*mainpin & (1 << pin)) != 0;
+bool readPin(volatile uint8_t* port, int pin){
+   return (*port & (1 << pin)) != 0;
 }
 
