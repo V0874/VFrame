@@ -181,5 +181,3 @@ void timer8bit_enable_external_clock(volatile timer8bit_async_status_t* timer); 
 void timer8bit_enable_async_mode(volatile timer8bit_async_status_t* timer);                   /* enables asynchronous mode for timer2 only */
 
 void timer8bit_reset_prescaler(volatile timer8bit_async_ctrl_t* timer);                      /* resets the prescaler for timer2 in asynchronous mode only */
-
-void timer8bit_init(volatile timer8bit_t* timer);                                               /* initializes a timer with basic settings */

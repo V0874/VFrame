@@ -102,10 +102,3 @@ void timer8bit_enable_async_mode(volatile timer8bit_async_status_t* timer){
 void timer8bit_reset_prescaler(volatile timer8bit_async_ctrl_t* timer){
     timer->GTCCRn |= TIMER_PRESCALER_RESET;
 }
-
-void timer8bit_init(volatile timer8bit_t* timer){
-    timer8bit_enable_fastpwm_ext_mode(TIMER0);
-    timer8bit_set_output_compare_a_value(TIMER0, 255);
-    timer8bit_set_prescaler(timer, TIMER_1024PRESCALER);
-    timer8bit_set_compareoutput_mode_a(TIMER0, TIMER_TOGGLE_OUTPUT_COMPARE_PINA);
-}
