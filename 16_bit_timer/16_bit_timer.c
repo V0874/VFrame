@@ -1,6 +1,6 @@
 #include "16_bit_timer.h"
 
-void timer16bit_timer_mode(timer16bit_t* timer, uint8_t mode){
+void timer16bit_timer_mode(volatile timer16bit_t* timer, uint8_t mode){
     uint8_t tccrna_bits = mode & 0x03;
     uint8_t tccrnb_bits = mode & 0x18;
     timer->TCCRnA &= ~tccrna_bits;
@@ -9,15 +9,15 @@ void timer16bit_timer_mode(timer16bit_t* timer, uint8_t mode){
     timer->TCCRnB |= tccrnb_bits;
 }
 
-void timer16bit_enable_input_capture_noise_cancel(timer16bit_t* timer){
+void timer16bit_enable_input_capture_noise_cancel(volatile timer16bit_t* timer){
     timer->TCCRnB |= TIMER_INPUT_CAPTURE_NOISE_CANCELER;
 }
 
-void timer16bit_disable_input_capture_noise_cancel(timer16bit_t* timer){
+void timer16bit_disable_input_capture_noise_cancel(volatile timer16bit_t* timer){
     timer->TCCRnB &= ~TIMER_INPUT_CAPTURE_NOISE_CANCELER;
 }
 
-void timer16bit_input_capture_edge_select(timer16bit_t* timer, uint8_t mode){
+void timer16bit_input_capture_edge_select(volatile timer16bit_t* timer, uint8_t mode){
     if(mode == 0){
         timer->TCCRnB &= ~TIMER_INPUT_CAPTURE_EDGE_SELECT;
     } else {
