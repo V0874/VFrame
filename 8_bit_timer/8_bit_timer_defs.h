@@ -21,7 +21,7 @@
 */
 
 #define TIMER8BIT_TOGGLE_OUTPUT_COMPARE_PINA              (1 << 6) /* there is a table that explains the behavior for these settings in the eight_bit_timer 
-                                                               header; it changes dependant on the mode that is selected */
+                                                                    header; it changes dependant on the mode that is selected */
 
 #define TIMER8BIT_CLEAR_OUTPUT_COMPARE_PINA               (1 << 7)  
 #define TIMER8BIT_SET_OUTPUT_COMPARE_PINA                 (1 << 6) | (1 << 7) 

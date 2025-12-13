@@ -31,6 +31,10 @@
 #define TIMER16BIT_FAST_PWM_ICRn_TOP                         (0x1A)
 #define TIMER16BIT_FAST_PWM_OCRnA_TOP                        (0x1B)
 
+#define TIMER16BIT_TOGGLE_OCN_MODE                           (1 << 2) | (1 << 4) | (1 << 6)
+#define TIMER16BIT_CLEAR_OCN_MODE                            (1 << 3) | (1 << 5) | (1 << 7)
+#define TIMER16BIT_SET_OCN_MODE                              (1 << 2) | (1 << 3) | (1 << 4) | (1 << 5) | (1 << 6) | (1 << 7)
+
 #define TIMER16BIT_INPUT_CAPTURE_EDGE_SELECT                 (1 << 6)
 #define TIMER16BIT_INPUT_CAPTURE_NOISE_CANCELER              (1 << 7)
 

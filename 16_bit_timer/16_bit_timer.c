@@ -9,6 +9,15 @@ void timer16bit_timer_mode(volatile timer16bit_t* timer, uint8_t mode){
     timer->TCCRnB |= tccrnb_bits;
 }
 
+void timer16bit_set_normal_compare_output_mode(volatile timer16bit_t* timer){
+    timer->TCCRnA &= ~0xFC;
+}
+
+void timer16bit_set_compare_output_mode(volatile timer16bit_t* timer, uint8_t mode){
+    timer->TCCRnA &= ~0xFC;
+    timer->TCCRnA |= mode;
+}
+
 void timer16bit_enable_input_capture_noise_cancel(volatile timer16bit_t* timer){
     timer->TCCRnB |= TIMER16BIT_INPUT_CAPTURE_NOISE_CANCELER;
 }
@@ -134,4 +143,10 @@ void timer16bit_enable_overflow_interrupt(volatile timer16bit_interrupts_t* time
 
 void timer16bit_disable_overflow_interrupt(volatile timer16bit_interrupts_t* timer){
     timer->TIMSKn &= ~TIMER16BIT_OVERFLOW_INTERRUPT_ENABLE;
+}
+
+void enable_pwm_timer3_pin5(){
+    timer16bit_timer_mode(TIMER3, TIMER16BIT_FAST_PWM_8BIT);
+    timer16bit_set_prescaler(TIMER3, TIMER16BIT_64PRESCALER);
+    timer16bit_set_output_compare_b_value(TIMER3, 255);
 }

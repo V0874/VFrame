@@ -50,6 +50,10 @@ typedef struct{
 
 void timer16bit_timer_mode(volatile timer16bit_t* timer, uint8_t mode);
 
+void timer16bit_set_normal_compare_output_mode(volatile timer16bit_t* timer);
+
+void timer16bit_set_compare_output_mode(volatile timer16bit_t* timer, uint8_t mode);
+
 void timer16bit_enable_input_capture_noise_cancel(volatile timer16bit_t* timer);
 
 void timer16bit_disable_input_capture_noise_cancel(volatile timer16bit_t* timer);
@@ -93,3 +97,5 @@ void timer16bit_output_compare_b_match_interrupt_enable(volatile timer16bit_inte
 void timer16bit_output_compare_a_match_interrupt_enable(volatile timer16bit_interrupts_t* timer);
 
 void timer16bit_overflow_interrupt_enable(volatile timer16bit_interrupts_t* timer);
+
+void enable_pwm_timer3_pin5();
