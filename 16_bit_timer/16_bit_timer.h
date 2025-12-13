@@ -97,5 +97,3 @@ void timer16bit_output_compare_b_match_interrupt_enable(volatile timer16bit_inte
 void timer16bit_output_compare_a_match_interrupt_enable(volatile timer16bit_interrupts_t* timer);
 
 void timer16bit_overflow_interrupt_enable(volatile timer16bit_interrupts_t* timer);
-
-void enable_pwm_timer3_pin5();
