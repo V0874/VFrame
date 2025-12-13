@@ -144,9 +144,3 @@ void timer16bit_enable_overflow_interrupt(volatile timer16bit_interrupts_t* time
 void timer16bit_disable_overflow_interrupt(volatile timer16bit_interrupts_t* timer){
     timer->TIMSKn &= ~TIMER16BIT_OVERFLOW_INTERRUPT_ENABLE;
 }
-
-void enable_pwm_timer3_pin5(){
-    timer16bit_timer_mode(TIMER3, TIMER16BIT_FAST_PWM_8BIT);
-    timer16bit_set_prescaler(TIMER3, TIMER16BIT_64PRESCALER);
-    timer16bit_set_output_compare_b_value(TIMER3, 255);
-}
