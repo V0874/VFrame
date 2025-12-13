@@ -107,16 +107,16 @@
                                                         Timer2 specific settings (Asynchronous mode)
 */
 
-#define TIMER8BIT_TIMER_ENABLE_EXT_CLOCKINPUT           (1 << 6) /* this setting must be set before asynchronous mode; the external clock input is enabled
+#define TIMER8BIT_ENABLE_EXT_CLOCKINPUT           (1 << 6) /* this setting must be set before asynchronous mode; the external clock input is enabled
                                                        and an external clock can be input on the timer oscillator pin (TOSC1) instead of the
                                                        32 kHz crystal. the crystal oscillator will be run by default.*/
 
-#define TIMER8BIT_TIMER_ENABLE_ASYNC_MODE               (1 << 5) /* timer 2 is by default clocked from the io clock source (selected prescaler); when this 
+#define TIMER8BIT_ENABLE_ASYNC_MODE               (1 << 5) /* timer 2 is by default clocked from the io clock source (selected prescaler); when this 
                                                        setting is enabled the timer is clocked from a crystal oscillator that is connected to the 
                                                        timer oscillator pin (TOSC1); when this setting is enabled, timer values, and compare match
                                                        register values might be corrupted*/
 
-#define TIMER8BIT_TIMER_UPDATE_BUSY_FLAG                (1 << 4) /* when the timer is asynchronous and the timer counter value is written, this flag is set;
+#define TIMER8BIT_UPDATE_BUSY_FLAG                (1 << 4) /* when the timer is asynchronous and the timer counter value is written, this flag is set;
                                                        when the timer gets updated (count increases) the flag is cleared by hardware; checking this
                                                        flag indicates that the timer counter value is ready to be updated
                                                        
@@ -126,10 +126,10 @@
                                                        domain and runs slower than the cpu clock, synchronization is required to avoid glitches in 
                                                        behavior.*/
 
-#define TIMER8BIT_TIMER_COMPREGISTER_A_UPDATEBUSY_FLAG  (1 << 3) /* flag for timer output compare register a */
-#define TIMER8BIT_TIMER_COMPREGISTER_B_UPDATEBUSY_FLAG  (1 << 2) /* flag for timer output compare register b */
-#define TIMER8BIT_TIMER_CTRLREGISTER_A_UPDATEBUSY_FLAG  (1 << 1) /* flag for timer output control register a*/
-#define TIMER8BIT_TIMER_CTRLREGISTER_B_UPDATEBUSY_FLAG  (1 << 0) /* flag for timer output control register b*/
+#define TIMER8BIT_COMPREGISTER_A_UPDATEBUSY_FLAG  (1 << 3) /* flag for timer output compare register a */
+#define TIMER8BIT_COMPREGISTER_B_UPDATEBUSY_FLAG  (1 << 2) /* flag for timer output compare register b */
+#define TIMER8BIT_CTRLREGISTER_A_UPDATEBUSY_FLAG  (1 << 1) /* flag for timer output control register a*/
+#define TIMER8BIT_CTRLREGISTER_B_UPDATEBUSY_FLAG  (1 << 0) /* flag for timer output control register b*/
 
 #define TIMER8BIT_PRESCALER_RESET                       (1 << 1) /* when this setting is enabled, the timer2 prescaler will be reset; if this setting is enabled
                                                        whenever timer2 is in asynchronous mode, it will remain enabled until the prescaler has been 
